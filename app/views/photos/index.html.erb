@@ -1,0 +1,19 @@
+<h1>Gallery Photos: <%= @product.name %></h1>
+<br />
+
+<p>This is the Photos (Index Action) page. To view/edit a photo, hover over and click on the thumbnail.<p>
+
+<br />
+<%= link_to 'Back', product_path(@product) %> |
+<%= link_to 'Upload Photos', new_product_photo_path(@product) %> |
+
+<br />
+<div id="gallery">
+  <ul id="grid">
+    <% @photos.each do |pic| %>
+     <li><%= link_to image_tag(pic.photo_file.url.to_s), product_photo_path(@product,pic) %>  
+        <%= link_to 'Remove', product_photo_path(@product, pic.id), :confirm => "Delete this photo?", :method => 'delete' %>
+      </li>
+    <% end %>
+  </ul>
+</div>
